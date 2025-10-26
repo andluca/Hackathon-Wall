@@ -8,4 +8,4 @@ const router = Router();
 
 router.use('/ideas', ideaRoutes);
 
-module.exports = router;
+export default router;
