@@ -2,7 +2,7 @@
 // Agrupa todos os roteadores de recursos (como 'ideas', 'users', etc.)
 
 import { Router } from 'express';
-import ideaRoutes from './idea.routes.js';
+import ideaRoutes from './idea.route.js';
 
 const router = Router();
 
