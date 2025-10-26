@@ -1,7 +1,7 @@
 // Definir as rotas específicas para o recurso 'ideas'
 
-const { Router } = require('express');
-const { getAllIdeas, createIdea } = require('../controllers/idea.controller');
+import { Router } from 'express';
+import { getAllIdeas, createIdea } from '../controllers/idea.controller.js';
 
 const router = Router();
 
@@ -11,4 +11,4 @@ router.get('/', getAllIdeas);
 // POST / - Criar uma nova ideia
 router.post('/', createIdea);
 
-module.exports = router;
+export default router;

@@ -1,4 +1,4 @@
-const { supabase } = require('../config/supabaseClient');
+import { supabase } from '../config/supabaseClient.js';
 
 /**
  * Busca todas as ideias no banco de dados.
@@ -38,7 +38,7 @@ async function createIdeaRepo(name, ideaText) {
   return data;
 }
 
-module.exports = {
+export default {
   findAllIdeasRepo,
   createIdeaRepo,
 };

@@ -1,4 +1,4 @@
-const { getAllIdeasService, createIdeaService } = require('../services/idea.service');
+import { getAllIdeasService, createIdeaService } from '../services/idea.service.js';
 
 /**
  * Controller para buscar todas as ideias.
@@ -40,7 +40,7 @@ async function createIdea(req, res) {
   }
 }
 
-module.exports = {
+export default {
   getAllIdeas,
   createIdea,
 };

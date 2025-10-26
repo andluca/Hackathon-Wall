@@ -4,7 +4,7 @@
 import express, { json } from 'express';
 import cors from 'cors';
 import 'dotenv/config';
-import allRoutes from './routes/index';
+import allRoutes from './routes/index.js';
 
 // Configuração do App
 const app = express();

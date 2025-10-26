@@ -1,7 +1,7 @@
-const { createClient } = require('@supabase/supabase-js');
-const dotenv = require('dotenv');
+import { createClient } from '@supabase/supabase-js';
+import { config } from 'dotenv';
 
-dotenv.config();
+config();
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || process.env.SUPABASE_KEY || process.env.NEXT_PUBLIC_SUPABASE_KEY;
@@ -37,4 +37,4 @@ function getAdminClient() {
 	});
 }
 
-module.exports = { supabase, getAdminClient };
+export default { supabase, getAdminClient };

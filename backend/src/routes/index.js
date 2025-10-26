@@ -1,8 +1,8 @@
 // Roteador principal da aplicação
 // Agrupa todos os roteadores de recursos (como 'ideas', 'users', etc.)
 
-const { Router } = require('express');
-const ideaRoutes = require('./idea.route');
+import { Router } from 'express';
+import ideaRoutes from './idea.routes.js';
 
 const router = Router();
 

@@ -1,4 +1,4 @@
-const { findAllIdeasRepo, createIdeaRepo } = require('../repositories/idea.repository');
+import { findAllIdeasRepo, createIdeaRepo } from '../repositories/idea.repository.js';
 
 /**
  * Busca todas as ideias através do repositório.
@@ -37,7 +37,7 @@ async function createIdeaService(name, ideaText) {
   }
 }
 
-module.exports = {
+export default {
   getAllIdeasService,
   createIdeaService,
 };
