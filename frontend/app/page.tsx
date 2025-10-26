@@ -1,65 +1,110 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import type React from "react"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+
+interface Idea {
+  id: string
+  name: string
+  idea: string
+}
+
+export default function HackathonWall() {
+  const [name, setName] = useState("")
+  const [idea, setIdea] = useState("")
+  const [ideas, setIdeas] = useState<Idea[]>([
+    {
+      id: "1",
+      name: "Sarah Chen",
+      idea: "An AI-powered code review assistant that learns from your team's coding standards and provides real-time suggestions.",
+    },
+    {
+      id: "2",
+      name: "Marcus Johnson",
+      idea: "A collaborative whiteboard app with voice-to-diagram conversion for remote brainstorming sessions.",
+    },
+    {
+      id: "3",
+      name: "Priya Patel",
+      idea: "Smart grocery app that tracks your pantry inventory and suggests recipes based on what you have.",
+    },
+  ])
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (name.trim() && idea.trim()) {
+      const newIdea: Idea = {
+        id: Date.now().toString(),
+        name: name.trim(),
+        idea: idea.trim(),
+      }
+      setIdeas([newIdea, ...ideas])
+      setName("")
+      setIdea("")
+    }
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-background p-6 md:p-12">
+      <div className="mx-auto max-w-6xl">
+        <h1 className="mb-8 text-4xl font-bold text-foreground">Hackathon Wall</h1>
+
+        <Card className="mb-12">
+          <CardContent className="pt-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="name" className="mb-2 block text-sm font-medium text-foreground">
+                  Your Name
+                </label>
+                <Input
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="idea" className="mb-2 block text-sm font-medium text-foreground">
+                  Your Idea
+                </label>
+                <Textarea
+                  id="idea"
+                  value={idea}
+                  onChange={(e) => setIdea(e.target.value)}
+                  placeholder="Share your hackathon idea..."
+                  rows={4}
+                  required
+                />
+              </div>
+
+              <Button type="submit" className="w-full">
+                Submit
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {ideas.map((item) => (
+            <Card key={item.id} className="flex flex-col">
+              <CardContent className="flex-1 pt-6">
+                <p className="text-foreground leading-relaxed">{item.idea}</p>
+              </CardContent>
+              <CardFooter className="border-t bg-muted/50 py-3">
+                <p className="text-sm font-medium text-muted-foreground">{item.name}</p>
+              </CardFooter>
+            </Card>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+      </div>
+    </main>
+  )
 }
