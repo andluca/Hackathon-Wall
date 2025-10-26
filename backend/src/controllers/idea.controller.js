@@ -40,7 +40,4 @@ async function createIdea(req, res) {
   }
 }
 
-export default {
-  getAllIdeas,
-  createIdea,
-};
+export { getAllIdeas, createIdea };

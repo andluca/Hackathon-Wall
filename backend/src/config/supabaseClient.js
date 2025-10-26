@@ -37,4 +37,4 @@ function getAdminClient() {
 	});
 }
 
-export default { supabase, getAdminClient };
+export { supabase, getAdminClient };

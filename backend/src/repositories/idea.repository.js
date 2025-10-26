@@ -38,7 +38,4 @@ async function createIdeaRepo(name, ideaText) {
   return data;
 }
 
-export default {
-  findAllIdeasRepo,
-  createIdeaRepo,
-};
+export { findAllIdeasRepo, createIdeaRepo };

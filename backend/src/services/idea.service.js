@@ -37,7 +37,4 @@ async function createIdeaService(name, ideaText) {
   }
 }
 
-export default {
-  getAllIdeasService,
-  createIdeaService,
-};
+export { getAllIdeasService, createIdeaService };
